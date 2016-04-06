@@ -1,0 +1,29 @@
+{
+  "dirs": [
+    {
+      "name": "dfgdfg",
+      "location": "/",
+      "created_time": 1432215175,
+      "update_time": 1432215175
+    },
+    {
+      "name": "documents",
+      "location": "/",
+      "created_time": 1455703223,
+      "update_time": 1455703223
+    },
+    {
+      "name": "music",
+      "location": "/",
+      "created_time": 1455703293,
+      "update_time": 1455703293
+    },
+    {
+      "name": "pictures",
+      "location": "/",
+      "created_time": 1455702732,
+      "update_time": 1455702732
+    }
+  ],
+  "files": []
+}
