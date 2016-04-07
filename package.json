@@ -1,0 +1,47 @@
+{
+  "name": "Media_browser",
+  "version": "1.0.0",
+  "description": "Kartkin media browser",
+  "main": "app.js",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "1.5.3",
+    "angular-animate": "^1.5.3",
+    "angular-aria": "^1.5.3",
+    "angular-cookies": "^1.5.3",
+    "angular-gettext": "latest",
+    "angular-sanitize": "^1.5.3",
+    "angular-touch": "^1.5.3",
+    "@angular/router": "latest"
+  },
+  "devDependencies": {
+    "gulp": "latest",
+    "run-sequence": "latest",
+    "gulp-rimraf": "latest",
+    "gulp-concat": "latest",
+    "gulp-uglify": "latest",
+    "gulp-util": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-angular-templatecache": "latest",
+    "gulp-compass": "latest",
+    "gulp-ng-annotate": "latest",
+
+    "browserify": "latest",
+    "uglifyify": "latest",
+    "watchify": "latest",
+    "babelify": "latest",
+    "babel-core": "latest",
+    "tsify": "latest",
+    "babel-preset-es2015": "latest",
+    "babel-plugin-transform-remove-console": "latest",
+    "babel-plugin-transform-remove-debugger": "latest",
+    "babel-polyfill": "latest",
+
+    "vinyl-source-stream": "latest",
+
+    "modernizr": "latest",
+    "gulp-exec": "latest",
+
+    "bootstrap-sass": "latest"
+  }
+}

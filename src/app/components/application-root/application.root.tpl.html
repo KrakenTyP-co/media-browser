@@ -1,0 +1,97 @@
+<div id="okno">
+    <!-- todo componeneta -->
+    <div id="left_menu">
+        <ul>
+            <li ng-show="$ctrl.dir" ng-click="$ctrl.loadDirLeft($event);" data-dirName="{{$ctrl.dir.location}}" style="font-weight: bold; font-size: 18px;">Nadradeny adresar</li>
+            <li ng-repeat="dir in $ctrl.dirs_data" ng-click="$ctrl.loadDirLeft($event)" data-dirName="{{dir.location}}/{{dir.name}}">{{dir.name}}</li>
+        </ul>
+    </div>
+
+    <left-menu></left-menu>
+
+    <div id="obsah">
+        <div id="header2">
+            <h2>Files / Images</h2>
+        </div>
+
+        <div style="margin-left:20px; margin-right: 30px">
+
+            <!-- todo componeneta -->
+            <div class="icon" ng-show="$ctrl.dir" ng-click="$ctrl.loadDir($event)" data-dirName="{{$ctrl.dir.location}}">
+                <img class="img_icon" src="img/adresar.png">
+                <div class="nazov_suboru">Nadradeny adresar</div>
+            </div>
+
+            <!-- todo componeneta -->
+            <div class="icon" ng-repeat="dir in $ctrl.dirs_data" ng-click="$ctrl.loadDir($event)" data-dirName="{{dir.location}}/{{dir.name}}">
+                <img class="img_icon" src="img/priecinok.png">
+                <div class="nazov_suboru">{{dir.name}}</div>
+
+            </div>
+
+            <!-- todo componeneta -->
+            <div class="icon" ng-repeat="file in $ctrl.files_data | filter:{ type: 'image/jpeg' }">
+                <img class="img_picture" src="{{file.thumb_link}}">
+                <div class="nazov_suboru">{{file.name}}</div>
+                <div class="typ_suboru">
+                    <p>JPG</p>
+                </div>
+                <div class="velkost_suboru">
+                    <p>{{file.size}}</p>
+                </div>
+            </div>
+
+            <!-- todo componeneta -->
+            <div class="icon" ng-repeat="file in $ctrl.files_data | filter:{ type: 'image/png' }">
+                <img class="img_icon" src="{{file.thumb_link}}">
+                <div class="nazov_suboru">{{file.name}}</div>
+                <div class="typ_suboru">
+                    <p>PNG</p>
+                </div>
+                <div class="velkost_suboru">
+                    <p>{{file.size}}</p>
+                </div>
+            </div>
+
+            <!-- todo componeneta -->
+            <div class="icon" ng-repeat="file in $ctrl.files_data | filter:{ type: 'text/plain' }">
+                <img class="img_icon" src="img/txt.png">
+                <div class="nazov_suboru">{{file.name}}</div>
+                <div class="typ_suboru">
+                    <p>TXT</p>
+                </div>
+                <div class="velkost_suboru">
+                    <p>{{file.size}}</p>
+                </div>
+            </div>
+
+            <!-- todo componeneta -->
+            <div class="icon" ng-repeat="file in $ctrl.files_data | filter:{ type: 'application/pdf' }">
+                <img class="img_icon" src="img/pdf.png">
+                <div class="nazov_suboru">{{file.name}}</div>
+                <div class="typ_suboru">
+                    <p>PDF</p>
+                </div>
+                <div class="velkost_suboru">
+                    <p>{{file.size}}</p>
+                </div>
+            </div>
+
+            <!-- todo componeneta -->
+            <div class="icon" ng-repeat="file in $ctrl.files_data | filter:{ type: '!image/jpeg'} | filter:{ type: '!application/pdf'} | filter:{ type: '!text/plain'} | filter:{ type: '!image/png'} ">
+                <img class="img_icon" src="img/plain.png">
+                <div class="nazov_suboru">{{file.name}}</div>
+                <div class="typ_suboru">
+                    <p>any</p>
+                </div>
+                <div class="velkost_suboru">
+                    <p>{{file.size}}</p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
