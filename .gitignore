@@ -2,7 +2,7 @@
 node_modules
 .sass-cache
 bower_components
-public
+#public
 tmp
 
 ### OSX template
