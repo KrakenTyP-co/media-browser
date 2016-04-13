@@ -41,14 +41,7 @@ class MyCtrl {
     };
 
 
-    loadDirLeft(event) {
-        this.$http.get("http://mediabrowser.bart.sk/dir" + $(event.target).attr('data-dirName'))
-            .then((response) => {
-                this.dir = response.data.dir;
-                this.dirs_data = response.data.dirs;
-                this.files_data = response.data.files;
-            })
-    }
+
 }
 
 export default {
