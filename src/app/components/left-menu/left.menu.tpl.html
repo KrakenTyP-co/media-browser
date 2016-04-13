@@ -1,6 +1,6 @@
 <div id="left_menu">
     <ul>
-        <li ng-show="$ctrl.dir" ng-click="$ctrl.loadDirLeft($event);" data-dirName="{{$ctrl.dir.location}}" style="font-weight: bold; font-size: 18px;">Nadradeny adresar</li>
-        <li ng-repeat="dir in $ctrl.dirs_data" ng-click="$ctrl.loadDirLeft($event)" data-dirName="{{dir.location}}/{{dir.name}}">{{dir.name}}</li>
+        <li ng-show="$ctrl.mediaService.dir" ng-click="$ctrl.mediaService.loadDir($ctrl.mediaService.dir, true)" style="font-weight: bold; font-size: 18px;">Nadradeny adresar</li>
+        <li ng-repeat="dir in $ctrl.mediaService.dirs_data" ng-click="$ctrl.mediaService.loadDir(dir)" >{{dir.name}}</li>
     </ul>
 </div>

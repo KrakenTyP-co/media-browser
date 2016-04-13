@@ -1,33 +1,13 @@
-
 class LeftMenu {
 
     // @ngInject
-    constructor($http) {
+    constructor($http, mediaService) {
         this.$http = $http;
-
-        this.dir = null;
-        this.dirs_data = [];
-        this.files_data = [];
-
-        this.$http.get("http://mediabrowser.bart.sk/dir").then((response) => {
-            this.dir = response.data.dir;
-            this.dirs_data = response.data.dirs;
-            this.files_data = response.data.files;
-        });
-        
-    }
-
-    loadDirLeft(event) {
-        this.$http.get("http://mediabrowser.bart.sk/dir" + $(event.target).attr('data-dirName'))
-            .then((response) => {
-                this.dir = response.data.dir;
-                this.dirs_data = response.data.dirs;
-                this.files_data = response.data.files;
-            })
+        this.mediaService = mediaService;
     }
 }
 
-export default{
+export default {
     controller: LeftMenu,
     templateUrl: 'left-menu/left.menu.tpl.html'
 }

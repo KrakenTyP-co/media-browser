@@ -1,8 +1,6 @@
 <div id="okno">
-    <!-- todo componeneta -->
 
-
-<left-menu></left-menu>
+    <left-menu></left-menu>
 
     <div id="obsah">
         <div id="header2">
@@ -11,33 +9,41 @@
 
         <div style="margin-left:20px; margin-right: 30px">
 
-            <!-- todo componeneta -->
-            <div class="icon" ng-show="$ctrl.dir" ng-click="$ctrl.loadDir($event)" data-dirName="{{$ctrl.dir.location}}">
+            <!-- todo componeneta 1 -->
+            <div class="icon" ng-show="$ctrl.mediaService.dir" ng-click="$ctrl.mediaService.loadDir($ctrl.mediaService.dir, true)">
                 <img class="img_icon" src="img/adresar.png">
                 <div class="nazov_suboru">Nadradeny adresar</div>
             </div>
 
-            <!-- todo componeneta -->
-            <div class="icon" ng-repeat="dir in $ctrl.dirs_data" ng-click="$ctrl.loadDir($event)" data-dirName="{{dir.location}}/{{dir.name}}">
+            <dir-return></dir-return>
+
+            <!-- todo componeneta 2 -->
+            <div class="icon" ng-repeat="dir in $ctrl.mediaService.dirs_data" ng-click="$ctrl.mediaService.loadDir(dir)">
                 <img class="img_icon" src="img/priecinok.png">
                 <div class="nazov_suboru">{{dir.name}}</div>
 
             </div>
 
-            <!-- todo componeneta -->
-            <div class="icon" ng-repeat="file in $ctrl.files_data | filter:{ type: 'image/jpeg' }">
-                <img class="img_picture" src="{{file.thumb_link}}">
+            <dir-base></dir-base>
+
+            <!-- todo componeneta 3 -->
+            <!--<div class="icon" ng-repeat="file in $ctrl.mediaService.files_data | filter:{ type: 'image/jpeg' }">-->
+            <div class="icon" ng-repeat="file in $ctrl.mediaService.files_data">
+                <!--<img class="img_picture" src="{{file.thumb_link}}">-->
+                <img class="img_picture" ng-src="{{file.thumb_link}}">
                 <div class="nazov_suboru">{{file.name}}</div>
                 <div class="typ_suboru">
-                    <p>JPG</p>
+                    <p>{{file.type}}</p>
                 </div>
                 <div class="velkost_suboru">
                     <p>{{file.size}}</p>
                 </div>
             </div>
 
-            <!-- todo componeneta -->
-            <div class="icon" ng-repeat="file in $ctrl.files_data | filter:{ type: 'image/png' }">
+            <file></file>
+
+            <!--&lt;!&ndash; todo componeneta 3 &ndash;&gt;
+            <div class="icon" ng-repeat="file in $ctrl.mediaService.files_data | filter:{ type: 'image/png' }">
                 <img class="img_icon" src="{{file.thumb_link}}">
                 <div class="nazov_suboru">{{file.name}}</div>
                 <div class="typ_suboru">
@@ -48,8 +54,8 @@
                 </div>
             </div>
 
-            <!-- todo componeneta -->
-            <div class="icon" ng-repeat="file in $ctrl.files_data | filter:{ type: 'text/plain' }">
+            &lt;!&ndash; todo componeneta 3 &ndash;&gt;
+            <div class="icon" ng-repeat="file in $ctrl.mediaService.files_data | filter:{ type: 'text/plain' }">
                 <img class="img_icon" src="img/txt.png">
                 <div class="nazov_suboru">{{file.name}}</div>
                 <div class="typ_suboru">
@@ -60,7 +66,7 @@
                 </div>
             </div>
 
-            <!-- todo componeneta -->
+            &lt;!&ndash; todo componeneta 3 &ndash;&gt;
             <div class="icon" ng-repeat="file in $ctrl.files_data | filter:{ type: 'application/pdf' }">
                 <img class="img_icon" src="img/pdf.png">
                 <div class="nazov_suboru">{{file.name}}</div>
@@ -72,8 +78,8 @@
                 </div>
             </div>
 
-            <!-- todo componeneta -->
-            <div class="icon" ng-repeat="file in $ctrl.files_data | filter:{ type: '!image/jpeg'} | filter:{ type: '!application/pdf'} | filter:{ type: '!text/plain'} | filter:{ type: '!image/png'} ">
+            &lt;!&ndash; todo componeneta 3 &ndash;&gt;
+            <div class="icon" ng-repeat="file in $ctrl.mediaService.files_data | filter:{ type: '!image/jpeg'} | filter:{ type: '!application/pdf'} | filter:{ type: '!text/plain'} | filter:{ type: '!image/png'} ">
                 <img class="img_icon" src="img/plain.png">
                 <div class="nazov_suboru">{{file.name}}</div>
                 <div class="typ_suboru">
@@ -82,8 +88,7 @@
                 <div class="velkost_suboru">
                     <p>{{file.size}}</p>
                 </div>
-            </div>
-
+            </div>-->
 
         </div>
 

@@ -48,7 +48,7 @@ function buildScript(file, watch, final) {
         });
     }
     if (watch) {
-        bundler.plugin(watchify);
+        bundler.plugin(watchify, {poll: true});
     }
 
     if (!typescript) {
