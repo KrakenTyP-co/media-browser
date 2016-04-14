@@ -175,7 +175,7 @@ gulp.task("modernizr-compile", function () {
 
 gulp.task('init-dev', ['copy-font', 'copy-images', 'copy-favicon']);
 
-gulp.task('copy-others', ['template-cache', 'copy-root', 'sass']);
+gulp.task('copy-others', ['template-cache', 'copy-root']);
 
 gulp.task('develop', function () {
     runSequence('init-dev', 'copy-others', 'watch');

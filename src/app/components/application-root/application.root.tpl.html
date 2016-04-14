@@ -9,36 +9,9 @@
 
         <div style="margin-left:20px; margin-right: 30px">
 
-            <!-- todo componeneta 1 -->
-            <div class="icon" ng-show="$ctrl.mediaService.dir" ng-click="$ctrl.mediaService.loadDir($ctrl.mediaService.dir, true)">
-                <img class="img_icon" src="img/adresar.png">
-                <div class="nazov_suboru">Nadradeny adresar</div>
-            </div>
-
             <dir-return></dir-return>
 
-            <!-- todo componeneta 2 -->
-            <div class="icon" ng-repeat="dir in $ctrl.mediaService.dirs_data" ng-click="$ctrl.mediaService.loadDir(dir)">
-                <img class="img_icon" src="img/priecinok.png">
-                <div class="nazov_suboru">{{dir.name}}</div>
-
-            </div>
-
             <dir-base></dir-base>
-
-            <!-- todo componeneta 3 -->
-            <!--<div class="icon" ng-repeat="file in $ctrl.mediaService.files_data | filter:{ type: 'image/jpeg' }">-->
-            <div class="icon" ng-repeat="file in $ctrl.mediaService.files_data">
-                <!--<img class="img_picture" src="{{file.thumb_link}}">-->
-                <img class="img_picture" ng-src="{{file.thumb_link}}">
-                <div class="nazov_suboru">{{file.name}}</div>
-                <div class="typ_suboru">
-                    <p>{{file.type}}</p>
-                </div>
-                <div class="velkost_suboru">
-                    <p>{{file.size}}</p>
-                </div>
-            </div>
 
             <file></file>
 

@@ -27,6 +27,11 @@ export default class MediaService {
                 this.dir = response.data.dir;
                 this.dirs_data = response.data.dirs;
                 this.files_data = response.data.files;
+                
             })
+
+
+
+
     };
 }
