@@ -1,9 +1,9 @@
-class File{
+class File {
 
     // @ngInject
-    constructor($http, mediaService){
+    constructor($http, mediaService) {
         this.$http = $http;
-        this.mediaService=mediaService;
+        this.mediaService = mediaService;
     }
 }
 
@@ -11,4 +11,3 @@ export default{
     controller: File,
     templateUrl: 'file/file.tpl.html'
 }
-

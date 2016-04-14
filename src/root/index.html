@@ -11,7 +11,29 @@
 
 
 <div id="uvod">
-    <div id="stvorec"></div>
+    <div id="stvorec">
+        <img ng-if="$ctrl.isImage" ng-src="$ctrl.mediaService.selectedFile.url" />
+    </div>
+
+    <stvorec>
+
+        <!--
+        ctrl of stvrorec
+
+        get isImage() {
+
+            this.mediaService.selectedFile //> ak je
+                return true
+
+            return false
+
+        }
+
+
+        -->
+
+    </stvorec>
+
     <button id="zobraz_dialog" style="margin-left:auto;margin-right:auto;display:block; background-color:#46494a;color: white; padding: 5px 5px 5px 5px">ZOBRAZIT DIALOG</button>
 </div>
 
