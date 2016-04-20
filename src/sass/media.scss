@@ -17,6 +17,11 @@ h1 {
   height: 100%;
   background: #f8f8ff;
   z-index: 50;
+
+  &.halfview {
+    opacity: 0.3;
+    background-color: black;
+  }
 }
 
 #stvorec {
@@ -40,7 +45,7 @@ h1 {
   background: #ffffff;
   z-index: 51;
   box-shadow: 14px 14px 11px #444444;
-  display: none;
+  display: block;
   overflow: hidden;
 }
 
@@ -83,6 +88,10 @@ h1 {
   width: 80%;
   overflow-y: scroll;
   height: 100%;
+
+  &.full {
+    width: 100%;
+  }
 }
 
 #header2 {

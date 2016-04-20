@@ -1,6 +1,9 @@
 import template from './tpl/index';
 
-import root, {module} from './app/components/application-root/application.root';
+import uvod from './app/components/uvod/uvod';
+import mediaBrowser from './app/components/media-browser/media.browser';
+
+import root from './app/components/application-root/application.root';
 
 import leftMenu from './app/components/left-menu/left.menu';
 
@@ -15,7 +18,9 @@ import stvorec from './app/components/stvorec/stvorec';
 import MediaService from './app/media.service';
 
 
-angular.module('browser', [template, module])
+angular.module('browser', [template])
+    .component('uvod', uvod)
+    .component('mediaBrowser', mediaBrowser)
     .component('applicationRoot', root)
     .component('leftMenu', leftMenu)
     .component('dirReturn', dirReturn)

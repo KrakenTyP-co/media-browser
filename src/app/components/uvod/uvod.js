@@ -1,4 +1,4 @@
-class ApplicationRoot{
+class Uvod {
 
     // @ngInject
     constructor($http, mediaService) {
@@ -8,6 +8,6 @@ class ApplicationRoot{
 }
 
 export default {
-    controller: ApplicationRoot,
-    templateUrl: 'application-root/application.root.tpl.html'
+    controller: Uvod,
+    templateUrl: 'uvod/uvod.tpl.html'
 };

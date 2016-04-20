@@ -29,19 +29,22 @@ const TYPES = {
 export default class MediaService {
 
     // @ngInject
-    constructor($http) {
+    constructor($http, $window) {
         this.$http = $http;
+        this.$window = $window;
 
         this.dir = null;
         this.dirs_data = [];
         this.files_data = [];
-        
+
         this.selectedFile = null;
 
-        this.loadDir();
-        
-    }
+        this.showDialog = false;
+        this.showLeftMenu = true;
 
+        this.loadDir();
+
+    }
 
     loadDir(directory = null, isReturn = false) {
         let urlAdress = '';
@@ -61,17 +64,25 @@ export default class MediaService {
                 this.files_data = [];
                 for (let file of response.data.files) {
                     this.files_data.push(new File(file));
-                }                
+                }
             })
     };
 
-    loadFile(fileDirectory=null){
-        if(fileDirectory.thumb_link)
-            this.selectedFile=fileDirectory.download_link;
-        else
-            window.location=fileDirectory.download_link;
-
+    loadFile(fileDirectory = null) {
+        if (fileDirectory.thumb_link)
+            this.selectedFile = fileDirectory.download_link;
+        else {
+            this.$window.open(fileDirectory.download_link, '_blank');
+        }
     };
+
+    toggleLeftMenu() {
+        this.showLeftMenu = !this.showLeftMenu;
+    }
+
+    toggleDialog() {
+        this.showDialog = !this.showDialog;
+    }
 }
 
 
