@@ -11,10 +11,6 @@
 
 
 <div id="uvod">
-    <div id="stvorec">
-        <img ng-if="$ctrl.isImage" ng-src="$ctrl.mediaService.selectedFile.url" />
-    </div>
-
     <stvorec>
 
         <!--
@@ -48,6 +44,7 @@
     <application-root></application-root>
 </div>
 
+
 </div>
 
 <script> //pohyb laveho menu
@@ -65,7 +62,9 @@ $(document).ready(function () {
 });
 </script>
 
+
 <script> //otvorenie dialogu
+
 $(document).ready(function () {
     $("#zobraz_dialog").click(function () {
         $("#MediaBrowser").css('display', 'block');
@@ -77,6 +76,7 @@ $(document).ready(function () {
 </script>
 
 <script> //zatvorenie dialogu
+
 $(document).ready(function () {
     $("#zavri_dialog").click(function () {
         $("#MediaBrowser").css('display', 'none');

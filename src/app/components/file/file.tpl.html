@@ -1,5 +1,4 @@
-<div class="icon" ng-repeat="file in $ctrl.mediaService.files_data">
-    <!--<img class="img_picture" src="{{file.thumb_link}}">-->
+<div class="icon" ng-repeat="file in $ctrl.mediaService.files_data" ng-click="$ctrl.mediaService.loadFile(file)">
     <img class="img_picture" ng-src="{{file.icon}}">
     <div class="nazov_suboru">{{file.name}}</div>
     <div class="typ_suboru">

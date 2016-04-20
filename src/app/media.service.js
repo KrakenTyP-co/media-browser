@@ -39,6 +39,7 @@ export default class MediaService {
         this.selectedFile = null;
 
         this.loadDir();
+        
     }
 
 
@@ -63,7 +64,16 @@ export default class MediaService {
                 }                
             })
     };
+
+    loadFile(fileDirectory=null){
+        if(fileDirectory.thumb_link)
+            this.selectedFile=fileDirectory.download_link;
+        else
+            window.location=fileDirectory.download_link;
+
+    };
 }
+
 
 class File {
     constructor(data) {
@@ -101,4 +111,6 @@ class File {
         let icon = this.getTypeName(true);
         return icon ? icon : "img/plain.png"
     }
+
+
 }

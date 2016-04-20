@@ -10,6 +10,8 @@ import dirBase from './app/components/dir-base/dir.base';
 
 import file from './app/components/file/file';
 
+import stvorec from './app/components/stvorec/stvorec';
+
 import MediaService from './app/media.service';
 
 
@@ -19,6 +21,7 @@ angular.module('browser', [template, module])
     .component('dirReturn', dirReturn)
     .component('dirBase', dirBase)
     .component('file', file)
+    .component('stvorec', stvorec)
 
     .service('mediaService', MediaService)
 ;
