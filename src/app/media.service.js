@@ -37,6 +37,8 @@ export default class MediaService {
         this.dirs_data = [];
         this.files_data = [];
 
+        this.dir_list = [];
+
         this.selectedFile = null;
 
         this.showDialog = false;
@@ -53,7 +55,10 @@ export default class MediaService {
 
             if (isReturn) {
                 urlAdress = directory.location;
+                this.dir_list.pop();
             }
+            else
+                this.dir_list.push(directory.name);
         }
 
         this.$http.get("http://mediabrowser.bart.sk/dir" + urlAdress)
@@ -65,12 +70,16 @@ export default class MediaService {
                 for (let file of response.data.files) {
                     this.files_data.push(new File(file));
                 }
-            })
+
+            });
+
     };
 
     loadFile(fileDirectory = null) {
-        if (fileDirectory.thumb_link)
+        if (fileDirectory.thumb_link) {
             this.selectedFile = fileDirectory.download_link;
+            this.showDialog = false;
+        }
         else {
             this.$window.open(fileDirectory.download_link, '_blank');
         }
@@ -83,6 +92,14 @@ export default class MediaService {
     toggleDialog() {
         this.showDialog = !this.showDialog;
     }
+
+    closeDialog(){
+        if(this.showDialog)
+            this.showDialog = !this.showDialog;
+    }
+
+
+
 }
 
 

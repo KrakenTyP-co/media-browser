@@ -1,6 +1,7 @@
 import template from './tpl/index';
 
 import uvod from './app/components/uvod/uvod';
+
 import mediaBrowser from './app/components/media-browser/media.browser';
 
 import root from './app/components/application-root/application.root';
@@ -15,6 +16,8 @@ import file from './app/components/file/file';
 
 import stvorec from './app/components/stvorec/stvorec';
 
+import breadcrumbs from './app/components/breadcrumbs/breadcrumbs';
+
 import MediaService from './app/media.service';
 
 
@@ -27,6 +30,7 @@ angular.module('browser', [template])
     .component('dirBase', dirBase)
     .component('file', file)
     .component('stvorec', stvorec)
+    .component('breadcrumbs', breadcrumbs)
 
     .service('mediaService', MediaService)
 ;

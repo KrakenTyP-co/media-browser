@@ -1,10 +1,11 @@
 <div>
     <div id="uvod"
-         ng-class="{'halfview': $ctrl.mediaService.showDialog}">
+         ng-class="{'halfview': $ctrl.mediaService.showDialog}"
+         ng-click="$ctrl.mediaService.closeDialog()">
         <stvorec></stvorec>
 
         <button id="zobraz_dialog"
-                ng-click="$ctrl.mediaService.toggleDialog()"
+                ng-click="$ctrl.mediaService.toggleDialog($event); $event.stopPropagation();"
                 style="margin-left:auto;margin-right:auto;display:block; background-color:#46494a;color: white; padding: 5px 5px 5px 5px">ZOBRAZIT DIALOG
         </button>
     </div>
