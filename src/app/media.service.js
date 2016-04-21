@@ -56,12 +56,12 @@ export default class MediaService {
             if (isReturn) {
                 urlAdress = directory.location;
                 this.dir_list.pop();
-            }
-            else
+            } else {
                 this.dir_list.push(directory.name);
+            }
         }
 
-        this.$http.get("http://mediabrowser.bart.sk/dir" + urlAdress)
+        this.$http.get(`http://mediabrowser.bart.sk/dir${urlAdress}`)
             .then((response) => {
                 this.dir = response.data.dir;
                 this.dirs_data = response.data.dirs;
@@ -97,9 +97,6 @@ export default class MediaService {
         if(this.showDialog)
             this.showDialog = !this.showDialog;
     }
-
-
-
 }
 
 

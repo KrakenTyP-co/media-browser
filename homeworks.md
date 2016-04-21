@@ -1,23 +1,64 @@
 # Domace ulohy
 
-## 1. zavretie modalu po kliknuti na sive pozadie
-- ng click toggle na <nieco>
+## 3. filtrovanie
+http://mb.bart.sk/B/#/
+filter|mediaService.filtrovanie
 
-## 2. clicknutim na obrazok sa zatvori modal
+## 3,5. Sortrovanie
+http://mb.bart.sk/B/#/
+orderBy|mediaService.sortrovanie
 
-## 3. breadcrumbs
-- servisa musi uchovavat pole zvolenych priecinkou
-- po stlaceni priecinku prida do pola nazov zvoleneho priecinku
-- po navrate odstrani posledny prvok z pola
-- vytvorit component bredcrumbs
-- v komponenete musi byt ng-repeat nad polom v service aby sa zobrazili hodnoty
+## 4. vytvorenie priecinku
+
+## 5. vymazanie priecinku
+
+## 6. upload documentov
+- upravit grafiku
+- v upload.file.js vyvolat upload suborov
+- v service spravit metodu na upload suborov
+
+## 7. vymazanie dokumentu
+
 
 # Future
-
-## 3. filtrovanie
-
-## 4. upload documentov
 
 # Helper
 
 http://mb.bart.sk/{A-D}/
+
+
+
+var file = $scope.myFile;
+
+var promise = UploadManager.uploadFileToUrl(file, uploadUrl);
+promise.success(function(data){
+
+    $timeout(function(){
+        $interval.cancel(uploadProgressInterval);
+        counter = 0;
+        $scope.uploadProgress = 0;
+    },1000);
+
+    if(data.hasOwnProperty('name')){
+        $scope.refresh();
+        $scope.addMessage('OK','Akcia bola úspešná', 'Obrázok bol pridaný');
+    }
+    if(data.hasOwnProperty('code')){
+        $scope.addMessage(data.code,data.message,data.description);
+    }
+}).error(function(error) {
+    $scope.refresh();
+    if(error.code != undefined) {
+        $scope.addMessage(error.code,error.message,error.description);
+    } else {
+        $scope.addMessage(500,'Danu akciu sa nepodarilo vykonať','Skontrolujte pravá na zápis.');
+    }
+});
+        
+        
+let fd = new FormData();
+fd.append('file', file);
+return $http.post(</api/file/>, fd, {
+    transformRequest: angular.identity,
+    headers: {'Content-Type': undefined}
+})
