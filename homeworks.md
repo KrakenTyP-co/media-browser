@@ -8,7 +8,7 @@ filter|mediaService.filtrovanie
 http://mb.bart.sk/B/#/
 orderBy|mediaService.sortrovanie
 
-## 4. vytvorenie priecinku
+## 4. vytvorenie priecinku - vycistit input po vytvoreni
 
 ## 5. vymazanie priecinku
 
@@ -19,6 +19,7 @@ orderBy|mediaService.sortrovanie
 
 ## 7. vymazanie dokumentu
 
+## 8. alertyovy system
 
 # Future
 
