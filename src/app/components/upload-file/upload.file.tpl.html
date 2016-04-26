@@ -4,7 +4,14 @@
            type="file"
            accept="{{$ctrl.fileAccept}}"
            multiple/>
-    <a class="cursor-pointer" ng-click="$ctrl.fireUploadEvent()">
-        <span class="display-block" translate>Upload</span>
-    </a>
+    <div>
+        <span>Upload suboru: </span>
+        <a class="cursor-pointer" ng-click="$ctrl.fireUploadEvent()">
+            <span class="display-block" translate>Upload</span>
+        </a>
+    </div>
+    <p>Novy adresar:
+        <input/>
+        <button>CREATE</button>
+    </p>
 </div>

@@ -70,7 +70,6 @@ h1 {
 }
 
 #left_menu {
-  line-height: 40px;
   background-color: #525657;
   color: white;
   float: left;
@@ -181,4 +180,12 @@ h1 {
 
 #dragging {
   display: none;
+}
+
+.filter{
+  margin: 10px 30px 10px 40px;
+  border-bottom: solid;
+  border-bottom-color: #ABB1B3;
+  border-bottom-width: thin;
+  font-size: 13px;
 }

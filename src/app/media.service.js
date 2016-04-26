@@ -44,6 +44,10 @@ export default class MediaService {
         this.showDialog = false;
         this.showLeftMenu = true;
 
+
+        this.order_files_by = "";
+        this.filter_files = "";
+
         this.loadDir();
 
     }
@@ -70,9 +74,7 @@ export default class MediaService {
                 for (let file of response.data.files) {
                     this.files_data.push(new File(file));
                 }
-
             });
-
     };
 
     loadFile(fileDirectory = null) {

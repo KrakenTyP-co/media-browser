@@ -1,4 +1,16 @@
 <div class="filter-panel">
-    <div class="filter"></div>
-    <upload-file></upload-file>
+    <div class="filter">
+        <upload-file></upload-file>
+        <p>Hladat:
+            <input ng-model="$ctrl.mediaService.filter_files"/>
+        </p>
+        <p>Zoradit podla:
+            <select ng-model="$ctrl.mediaService.order_files_by">
+                <option value="name">Nazvu</option>
+                <option value="size">Velkosti</option>
+                <option value="created_time">Datumu vytvorenia</option>
+                <option value="niceType">Typu suboru</option>
+            </select>
+        </p>
+    </div>
 </div>
