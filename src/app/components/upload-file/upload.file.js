@@ -95,6 +95,10 @@ class UploadFile {
 
         reader.readAsBinaryString(file);
     };
+
+    createNewDir() {
+        this.mediaService.createNewDir();
+    }
 }
 
 export default {

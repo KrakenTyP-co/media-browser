@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^api/(.+)$ http://mediabrowser.bart.sk/media-browser/$1 [P,L,QSA]

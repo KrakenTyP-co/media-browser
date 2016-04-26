@@ -48,6 +48,8 @@ export default class MediaService {
         this.order_files_by = "";
         this.filter_files = "";
 
+        this.new_dir = '';
+
         this.loadDir();
 
     }
@@ -87,6 +89,25 @@ export default class MediaService {
         }
     };
 
+    createNewDir() {
+        var location = '/';
+        if (this.dir) {
+            location = this.dir.location + '/' + this.dir.name;
+        }
+
+        this.$http({
+                method: 'POST',
+                data: {
+                    name: this.new_dir,
+                    location: location
+                },
+                url: `http://mediabrowser.bart.sk/media-browser/dir`
+            })
+            .then(result => {
+                this.dirs_data.push(result.data);
+            });
+    }
+
     toggleLeftMenu() {
         this.showLeftMenu = !this.showLeftMenu;
     }
@@ -95,8 +116,8 @@ export default class MediaService {
         this.showDialog = !this.showDialog;
     }
 
-    closeDialog(){
-        if(this.showDialog)
+    closeDialog() {
+        if (this.showDialog)
             this.showDialog = !this.showDialog;
     }
 }
