@@ -89,6 +89,33 @@ export default class MediaService {
         }
     };
 
+    uploadFile(filesSet) {
+        for (let item of filesSet) {
+            this._uploadFile(item);
+        }
+    }
+
+    _uploadFile(file) {
+        var location = '/';
+        if (this.dir) {
+            location = this.dir.location + '/' + this.dir.name;
+        }
+
+        var formData = new FormData();
+        formData.append("file", file);
+
+        this.$http({
+                method: 'POST',
+                data: formData,
+                url: `http://mediabrowser.bart.sk/media-browser/file${location}`,
+                headers: {'Content-Type': undefined},
+                transformRequest: angular.identity
+            })
+            .then(result => {
+                this.files_data.push(new File(result.data));
+            });
+    }
+
     createNewDir() {
         var location = '/';
         if (this.dir) {
@@ -107,25 +134,20 @@ export default class MediaService {
                 this.dirs_data.push(result.data);
             });
 
-        this.new_dir="";
+        this.new_dir = "";
     }
-    
-    deleteDir(){
-        /*
-        let location = this.dir.location;
+
+    deleteDir(dir) {
         this.$http({
                 method: 'DELETE',
-                url: `http://mediabrowser.bart.sk/media-browser/dir${location}`
+                url: `http://mediabrowser.bart.sk/media-browser/dir${dir.location}/${dir.name}`
             })
             .then(result => {
-                this.dirs_data.splice();
+                let index = this.dirs_data.indexOf(dir);
+                if (index > -1) {
+                    this.dirs_data.splice(index, 1);
+                }
             });
-            */
-
-
-
-        alert("priecinok zmazany")
-
     }
 
     toggleLeftMenu() {
@@ -145,6 +167,17 @@ export default class MediaService {
 
 class File {
     constructor(data) {
+        this.created_time = null;
+        this.download_link = null;
+        this.location = null;
+        this.name = null;
+        this.size = null;
+        this.thumb_link = null;
+        this.type = null;
+        this.update_time = null;
+
+        this.rawFile = null;
+
         angular.merge(this, data);
     }
 
@@ -169,6 +202,17 @@ class File {
         }
 
         return null;
+    }
+
+    exchangeRaw(file) {
+        this.download_link = null;
+        this.location = null;
+        this.name = file.name;
+        this.size = file.size;
+        this.thumb_link = null;
+        this.type = file.type;
+        this.update_time = null;
+        this.rawFile = file.rawFile;
     }
 
     get niceType() {

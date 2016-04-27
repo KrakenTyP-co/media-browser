@@ -55,46 +55,14 @@ class UploadFile {
                 if (list.length) {
                     for (let fileIndex in list) {
                         if (!isNaN(fileIndex)) {
-                            this.loadFile(list.item(fileIndex));
+                            this.list.add(list.item(fileIndex));
                         }
                     }
+
+                    this.mediaService.uploadFile(this.list);
                 }
             }, false);
     }
-
-    /**
-     * Handle a file when is dropped
-     *
-     * @param file
-     */
-    loadFile(file) {
-        let reader = new FileReader();
-        reader.onload = (readerEvt) => {
-
-            let item = {};
-            item.doc_name = file.name;
-            item.fileBase64 = btoa(readerEvt.target.result);
-            item.doc_type = file.type;
-            item.file_size = file.size;
-
-            this.list.add(item);
-
-            this.$rootScope.$apply();
-
-            if (this.uploadTimeout) {
-                this.$timeout.cancel(this.uploadTimeout);
-            }
-            this.uploadTimeout = this.$timeout(() => {
-                // todo do upload
-                // subory su v this.list a ten je Set - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
-                // na upload treba vyuzit FormData - https://developer.mozilla.org/en-US/docs/Web/API/FormData
-                // do formData sa vklada bud to readerEvt.target.result alebo item.fileBase64 alebo toto ignorovat a rovno poslat
-                // do formData file
-            }, 200);
-        };
-
-        reader.readAsBinaryString(file);
-    };
 
     createNewDir() {
         this.mediaService.createNewDir();

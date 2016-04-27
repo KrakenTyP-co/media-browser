@@ -6,11 +6,11 @@ class DirBase {
         this.mediaService = mediaService;
     }
 
-    deleteDir(){
-        this.mediaService.deleteDir();
+    deleteDir(dir, $event) {
+        $event.stopPropagation();
+        this.mediaService.deleteDir(dir);
     }
 }
-
 
 
 export default {

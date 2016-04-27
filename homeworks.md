@@ -1,25 +1,14 @@
 # Domace ulohy
 
-## 3. filtrovanie
-http://mb.bart.sk/B/#/
-filter|mediaService.filtrovanie
-
-## 3,5. Sortrovanie
-http://mb.bart.sk/B/#/
-orderBy|mediaService.sortrovanie
-
-## 4. vytvorenie priecinku - vycistit input po vytvoreni
-
-## 5. vymazanie priecinku
-
-## 6. upload documentov
-- upravit grafiku
-- v upload.file.js vyvolat upload suborov
-- v service spravit metodu na upload suborov
-
 ## 7. vymazanie dokumentu
 
 ## 8. alertyovy system
+- do servisi media service pridat prazdne pole kde budu ukladane alerty
+- pri interakcii z API vypisat alert (vlozenim do pola) -> then, catch
+- directiva z ng repeat nad servisou z alertamy
+- graficky zobrazit niekde na stranke
+- po uplinuti 5s nech sa vyhodi prvy alert angular -> https://docs.angularjs.org/api/ng/service/$timeout
+- graficky upravit
 
 # Future
 
@@ -29,37 +18,18 @@ http://mb.bart.sk/{A-D}/
 
 
 
-var file = $scope.myFile;
-
-var promise = UploadManager.uploadFileToUrl(file, uploadUrl);
-promise.success(function(data){
-
-    $timeout(function(){
-        $interval.cancel(uploadProgressInterval);
-        counter = 0;
-        $scope.uploadProgress = 0;
-    },1000);
-
-    if(data.hasOwnProperty('name')){
-        $scope.refresh();
-        $scope.addMessage('OK','Akcia bola úspešná', 'Obrázok bol pridaný');
-    }
-    if(data.hasOwnProperty('code')){
-        $scope.addMessage(data.code,data.message,data.description);
-    }
-}).error(function(error) {
-    $scope.refresh();
-    if(error.code != undefined) {
-        $scope.addMessage(error.code,error.message,error.description);
-    } else {
-        $scope.addMessage(500,'Danu akciu sa nepodarilo vykonať','Skontrolujte pravá na zápis.');
-    }
-});
-        
-        
-let fd = new FormData();
-fd.append('file', file);
-return $http.post(</api/file/>, fd, {
-    transformRequest: angular.identity,
-    headers: {'Content-Type': undefined}
-})
+        this.$http.get(`http://mediabrowser.bart.sk/dir${urlAdress}`)
+            .then((response) => { // then success
+                response.data
+            }, (error) => { // cahtch succes
+                error.data
+            })
+            .catch((error) => { // cahtch succes rovnako ako hore
+                error.data
+            })
+            .success(data => { // succes ako hore len ina cesta k datam
+                data
+            })
+            .error(data => { // catch ako hore len ina cesta k datam
+                data
+            });
