@@ -1,4 +1,8 @@
 <div class="icon" ng-repeat="dir in $ctrl.mediaService.dirs_data | filter: {name :$ctrl.mediaService.filter_files}" ng-click="$ctrl.mediaService.loadDir(dir)">
-    <img class="img_icon" src="img/priecinok.png">
-    <div class="nazov_suboru">{{dir.name}}</div>
+
+        <img  class="remove_dir" src="img/close.png" ng-click="$ctrl.deleteDir(); $event.stopPropagation()"/>
+
+        <img class="img_icon" src="img/priecinok.png">
+        <div class="nazov_suboru">{{dir.name}}</div>
+
 </div>

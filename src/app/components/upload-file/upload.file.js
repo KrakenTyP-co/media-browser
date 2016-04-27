@@ -99,6 +99,8 @@ class UploadFile {
     createNewDir() {
         this.mediaService.createNewDir();
     }
+
+
 }
 
 export default {

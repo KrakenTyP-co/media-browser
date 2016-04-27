@@ -5,7 +5,13 @@ class DirBase {
         this.$http = $http;
         this.mediaService = mediaService;
     }
+
+    deleteDir(){
+        this.mediaService.deleteDir();
+    }
 }
+
+
 
 export default {
     controller: DirBase,

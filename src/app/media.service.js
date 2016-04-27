@@ -106,6 +106,26 @@ export default class MediaService {
             .then(result => {
                 this.dirs_data.push(result.data);
             });
+
+        this.new_dir="";
+    }
+    
+    deleteDir(){
+        /*
+        let location = this.dir.location;
+        this.$http({
+                method: 'DELETE',
+                url: `http://mediabrowser.bart.sk/media-browser/dir${location}`
+            })
+            .then(result => {
+                this.dirs_data.splice();
+            });
+            */
+
+
+
+        alert("priecinok zmazany")
+
     }
 
     toggleLeftMenu() {
