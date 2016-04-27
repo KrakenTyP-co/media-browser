@@ -33,3 +33,8 @@ http://mb.bart.sk/{A-D}/
             .error(data => { // catch ako hore len ina cesta k datam
                 data
             });
+            
+            
+            this.$timeout(() => {
+                this.pole.shift();
+            }, 5000);
