@@ -83,16 +83,22 @@ h1 {
 }
 
 .alert {
-  background-color: #9acd32;
+  background-color: lightgray;
   margin: 10px 10px 10px 10px;
-  width: 93%;
   border-radius: 25px;
-  border: 2px solid #a1a1a1;
   padding: 0px 11px;
   width: 85%;
   height: auto;
   word-wrap: break-word;
+  line-height: 1.4;
 
+  &.success {
+    background-color: limegreen;
+  }
+
+  &.error {
+    background-color: orangered;
+  }
 }
 
 #obsah {

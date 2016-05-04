@@ -1,9 +1,10 @@
 class LeftMenu {
 
     // @ngInject
-    constructor($http, mediaService) {
+    constructor($http, mediaService, alertsService) {
         this.$http = $http;
         this.mediaService = mediaService;
+        this.alertsService = alertsService;
     }
 }
 

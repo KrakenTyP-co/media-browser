@@ -12,6 +12,7 @@ import filterPanel from './app/components/filter-panel/filter.panel';
 import uploadFile from './app/components/upload-file/upload.file';
 
 import MediaService from './app/media.service';
+import AlertsService from './app/alerts.service';
 
 angular.module('browser', [template])
     .component('uvod', uvod)
@@ -27,4 +28,5 @@ angular.module('browser', [template])
     .component('uploadFile', uploadFile)
 
     .service('mediaService', MediaService)
+    .service('alertsService', AlertsService)
 ;

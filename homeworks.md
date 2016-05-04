@@ -1,15 +1,15 @@
 # Domace ulohy
 
-## 7. vymazanie dokumentu
+1. loading
+- vlastna servisa podobne ako alerty
+- obashuje loadingStart property
+- metoda doLoading/stopLoading
+- trigrovat loadingStart pri zacati metody v media servise
+- trigrovat loadingStop v finnaly statemante
+- graficky zapracovat loading na stranke (text/animacia/whatever) // http://projects.lukehaas.me/css-loaders/
+- zobrazovat podla ngIf na zaklade hodnoty zo servisi
 
-## 8. alertyovy system
-- do servisi media service pridat prazdne pole kde budu ukladane alerty
-- pri interakcii z API vypisat alert (vlozenim do pola) -> then, catch
-- directiva z ng repeat nad servisou z alertamy
-- graficky zobrazit niekde na stranke
-- po uplinuti 5s nech sa vyhodi prvy alert angular -> https://docs.angularjs.org/api/ng/service/$timeout
-- graficky upravit
-
+2. vlastne rozsirenie
 # Future
 
 # Helper

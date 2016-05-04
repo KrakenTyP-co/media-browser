@@ -29,10 +29,11 @@ const TYPES = {
 export default class MediaService {
 
     // @ngInject
-    constructor($http, $window, $timeout) {
+    constructor($http, $window, $timeout, alertsService) {
         this.$http = $http;
         this.$window = $window;
         this.$timeout = $timeout;
+        this.alertsService = alertsService;
 
         this.dir = null;
         this.dirs_data = [];
@@ -52,11 +53,11 @@ export default class MediaService {
 
         this.loadDir();
 
-        this.alerts = [];
-
     }
 
     loadDir(directory = null, isReturn = false) {
+        // nacitat loading serivus a spravit loading start
+
         let urlAdress = '';
         if (directory) {
             urlAdress = directory.location + '/' + directory.name;
@@ -78,6 +79,13 @@ export default class MediaService {
                 for (let file of response.data.files) {
                     this.files_data.push(new File(file));
                 }
+            })
+            .catch((error) => {
+                let mess = error.data.code ? error.data.description : "Vyskytla sa chyba.";
+                this.alertsService.addAlert(mess, 'error');
+            })
+            .finally(() => {
+                // todo urob loadin stop
             });
     };
 
@@ -115,10 +123,12 @@ export default class MediaService {
             })
             .then(result => {
                 this.files_data.push(new File(result.data));
-                this.alerts.push("Subor uspesne nahrany.");
-                this.$timeout(() => {
-                    this.alerts.shift();
-                }, 5000);
+                let mess = result.data.code ? result.data.description : "Subor uspesne nahrany.";
+                this.alertsService.addAlert(mess);
+            })
+            .catch((error) => {
+                let mess = error.data.code ? error.data.description : "Vyskytla sa chyba.";
+                this.alertsService.addAlert(mess, 'error');
             });
     }
 
@@ -138,10 +148,12 @@ export default class MediaService {
             })
             .then(result => {
                 this.dirs_data.push(result.data);
-                this.alerts.push("Priecinok uspesne vytvoreny.");
-                this.$timeout(() => {
-                    this.alerts.shift();
-                }, 5000);
+                let mess = result.data.code ? result.data.description : "Priecinok uspesne vytvoreny.";
+                this.alertsService.addAlert(mess);
+            })
+            .catch((error) => {
+                let mess = error.data.code ? error.data.description : "Vyskytla sa chyba.";
+                this.alertsService.addAlert(mess, 'error');
             });
 
         this.new_dir = "";
@@ -156,11 +168,13 @@ export default class MediaService {
                 let index = this.dirs_data.indexOf(dir);
                 if (index > -1) {
                     this.dirs_data.splice(index, 1);
-                };
-                this.alerts.push("Priecinok uspesne zmazany.");
-                this.$timeout(() => {
-                    this.alerts.shift();
-                }, 5000);
+                }
+                let mess = result.data.code ? result.data.description : "Priecinok uspesne zmazany.";
+                this.alertsService.addAlert(mess);
+            })
+            .catch((error) => {
+                let mess = error.data.code ? error.data.description : "Vyskytla sa chyba.";
+                this.alertsService.addAlert(mess, 'error');
             });
     }
 
@@ -173,11 +187,13 @@ export default class MediaService {
                 let index = this.files_data.indexOf(file);
                 if (index > -1) {
                     this.files_data.splice(index, 1);
-                };
-                this.alerts.push("Subor uspesne zmazany.");
-                this.$timeout(() => {
-                    this.alerts.shift();
-                }, 5000);
+                }
+                let mess = result.data.code ? result.data.description : "Subor uspesne zmazany.";
+                this.alertsService.addAlert(mess);
+            })
+            .catch((error) => {
+                let mess = error.data.code ? error.data.description : "Vyskytla sa chyba.";
+                this.alertsService.addAlert(mess, 'error');
             });
     }
 
