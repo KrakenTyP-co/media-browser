@@ -79,6 +79,20 @@ h1 {
   overflow-y: auto;
   height: 100%;
   cursor: default;
+  position: relative;
+}
+
+.alert {
+  background-color: #9acd32;
+  margin: 10px 10px 10px 10px;
+  width: 93%;
+  border-radius: 25px;
+  border: 2px solid #a1a1a1;
+  padding: 0px 11px;
+  width: 85%;
+  height: auto;
+  word-wrap: break-word;
+
 }
 
 #obsah {
@@ -204,3 +218,5 @@ h1 {
   background-color: #9acd32;
   color: white;
 }
+
+

@@ -5,6 +5,10 @@ class File {
         this.$http = $http;
         this.mediaService = mediaService;
     }
+    deleteFile(file, $event) {
+        $event.stopPropagation();
+        this.mediaService.deleteFile(file);
+    }
 }
 
 export default{

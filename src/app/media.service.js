@@ -29,9 +29,10 @@ const TYPES = {
 export default class MediaService {
 
     // @ngInject
-    constructor($http, $window) {
+    constructor($http, $window, $timeout) {
         this.$http = $http;
         this.$window = $window;
+        this.$timeout = $timeout;
 
         this.dir = null;
         this.dirs_data = [];
@@ -44,13 +45,14 @@ export default class MediaService {
         this.showDialog = false;
         this.showLeftMenu = true;
 
-
         this.order_files_by = "";
         this.filter_files = "";
 
         this.new_dir = '';
 
         this.loadDir();
+
+        this.alerts = [];
 
     }
 
@@ -113,6 +115,10 @@ export default class MediaService {
             })
             .then(result => {
                 this.files_data.push(new File(result.data));
+                this.alerts.push("Subor uspesne nahrany.");
+                this.$timeout(() => {
+                    this.alerts.shift();
+                }, 5000);
             });
     }
 
@@ -132,6 +138,10 @@ export default class MediaService {
             })
             .then(result => {
                 this.dirs_data.push(result.data);
+                this.alerts.push("Priecinok uspesne vytvoreny.");
+                this.$timeout(() => {
+                    this.alerts.shift();
+                }, 5000);
             });
 
         this.new_dir = "";
@@ -146,7 +156,28 @@ export default class MediaService {
                 let index = this.dirs_data.indexOf(dir);
                 if (index > -1) {
                     this.dirs_data.splice(index, 1);
-                }
+                };
+                this.alerts.push("Priecinok uspesne zmazany.");
+                this.$timeout(() => {
+                    this.alerts.shift();
+                }, 5000);
+            });
+    }
+
+    deleteFile(file){
+        this.$http({
+                method: 'DELETE',
+                url: `http://mediabrowser.bart.sk/media-browser/file${file.location}/${file.name}`
+            })
+            .then(result => {
+                let index = this.files_data.indexOf(file);
+                if (index > -1) {
+                    this.files_data.splice(index, 1);
+                };
+                this.alerts.push("Subor uspesne zmazany.");
+                this.$timeout(() => {
+                    this.alerts.shift();
+                }, 5000);
             });
     }
 
