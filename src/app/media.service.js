@@ -29,11 +29,12 @@ const TYPES = {
 export default class MediaService {
 
     // @ngInject
-    constructor($http, $window, $timeout, alertsService) {
+    constructor($http, $window, $timeout, alertsService, loadingService) {
         this.$http = $http;
         this.$window = $window;
         this.$timeout = $timeout;
         this.alertsService = alertsService;
+        this.loadingService = loadingService;
 
         this.dir = null;
         this.dirs_data = [];
@@ -57,6 +58,7 @@ export default class MediaService {
 
     loadDir(directory = null, isReturn = false) {
         // nacitat loading serivus a spravit loading start
+        this.loadingService.doLoading();
 
         let urlAdress = '';
         if (directory) {
@@ -85,6 +87,7 @@ export default class MediaService {
                 this.alertsService.addAlert(mess, 'error');
             })
             .finally(() => {
+                this.loadingService.stopLoading();
                 // todo urob loadin stop
             });
     };
@@ -106,6 +109,8 @@ export default class MediaService {
     }
 
     _uploadFile(file) {
+        this.loadingService.doLoading();
+
         var location = '/';
         if (this.dir) {
             location = this.dir.location + '/' + this.dir.name;
@@ -129,10 +134,15 @@ export default class MediaService {
             .catch((error) => {
                 let mess = error.data.code ? error.data.description : "Vyskytla sa chyba.";
                 this.alertsService.addAlert(mess, 'error');
+            })
+            .finally(() => {
+                this.loadingService.stopLoading();
             });
     }
 
     createNewDir() {
+        this.loadingService.doLoading();
+
         var location = '/';
         if (this.dir) {
             location = this.dir.location + '/' + this.dir.name;
@@ -154,12 +164,17 @@ export default class MediaService {
             .catch((error) => {
                 let mess = error.data.code ? error.data.description : "Vyskytla sa chyba.";
                 this.alertsService.addAlert(mess, 'error');
+            })
+            .finally(() => {
+                this.loadingService.stopLoading();
             });
 
         this.new_dir = "";
     }
 
     deleteDir(dir) {
+        this.loadingService.doLoading();
+
         this.$http({
                 method: 'DELETE',
                 url: `http://mediabrowser.bart.sk/media-browser/dir${dir.location}/${dir.name}`
@@ -175,10 +190,15 @@ export default class MediaService {
             .catch((error) => {
                 let mess = error.data.code ? error.data.description : "Vyskytla sa chyba.";
                 this.alertsService.addAlert(mess, 'error');
+            })
+            .finally(() => {
+                this.loadingService.stopLoading();
             });
     }
 
     deleteFile(file){
+        this.loadingService.doLoading();
+
         this.$http({
                 method: 'DELETE',
                 url: `http://mediabrowser.bart.sk/media-browser/file${file.location}/${file.name}`
@@ -194,6 +214,9 @@ export default class MediaService {
             .catch((error) => {
                 let mess = error.data.code ? error.data.description : "Vyskytla sa chyba.";
                 this.alertsService.addAlert(mess, 'error');
+            })
+            .finally(() => {
+                this.loadingService.stopLoading();
             });
     }
 

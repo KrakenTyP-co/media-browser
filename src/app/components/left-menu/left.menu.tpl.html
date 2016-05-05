@@ -4,4 +4,5 @@
         <li ng-repeat="dir in $ctrl.mediaService.dirs_data" ng-click="$ctrl.mediaService.loadDir(dir)" >{{dir.name}}</li>
     </ul>
     <div class="alert" ng-class="alert.type" ng-repeat="alert in $ctrl.alertsService.alerts track by $index">{{alert.message}}</div>
+    <div class="loader" ng-if="$ctrl.loadingService.loadingStart">Loading...</div>
 </div>
