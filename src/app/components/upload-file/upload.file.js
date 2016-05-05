@@ -22,6 +22,7 @@ class UploadFile {
         this.input = this.$element.find("input")[0];
 
         this.initClick();
+        this.initBinds(this.$element);
     }
 
     /**
@@ -53,16 +54,72 @@ class UploadFile {
             .addEventListener('change', (e) => {
                 let list = e.target.files;
                 if (list.length) {
-                    for (let fileIndex in list) {
-                        if (!isNaN(fileIndex)) {
-                            this.list.add(list.item(fileIndex));
-                        }
-                    }
-
+                    this._rearrayList(list);
                     this.mediaService.uploadFile(this.list);
                 }
             }, false);
     }
+
+
+    /**
+     * Init binds for Drag&Drop
+     *
+     */
+    initBinds(element = this.$element) {
+        this.dropShow = 0;
+
+        element.bind("dragover", (event) => {
+            this.onDragOver(event, element);
+        });
+
+        //Dragging ends on the overlay, which takes the whole window
+        element
+            .bind("dragenter", (event) => {
+                this.dropShow++;
+            })
+            .bind("dragleave", (event) => {
+                this.dropShow--;
+                if (this.dropShow === 0) {
+                    this.onDragEnd(event, element);
+                }
+            })
+            .bind("drop", (e) => {
+                this.dropShow = 0;
+                this.onDragEnd(e, element);
+                let list = e.dataTransfer.files;
+                this._rearrayList(list);
+                this.mediaService.uploadFile(this.list);
+            });
+    }
+
+    _rearrayList(list) {
+        this.list.clear();
+        for (let fileIndex in list) {
+            if (!isNaN(fileIndex)) {
+                this.list.add(list.item(fileIndex));
+            }
+        }
+    }
+
+
+    /**
+     * Add classes when an item is dragged over the document and when
+     * the user leaves the window, cancels the drag or drops the item
+     *
+     * @param e
+     * @param element
+     */
+    onDragOver(e, element = this.$element) {
+        e.stopPropagation();
+        e.preventDefault();
+        element.addClass("dragOver");
+    };
+
+    onDragEnd(e, element = this.$element) {
+        e.stopPropagation();
+        e.preventDefault();
+        element.removeClass("dragOver");
+    };
 
     createNewDir() {
         this.mediaService.createNewDir();
