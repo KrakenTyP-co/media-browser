@@ -14,6 +14,7 @@ import uploadFile from './app/components/upload-file/upload.file';
 import MediaService from './app/media.service';
 import AlertsService from './app/alerts.service';
 import LoadingService from './app/loading.service';
+import TrashService from './app/trash.service';
 
 angular.module('browser', [template])
     .component('uvod', uvod)
@@ -31,4 +32,5 @@ angular.module('browser', [template])
     .service('mediaService', MediaService)
     .service('alertsService', AlertsService)
     .service('loadingService', LoadingService)
+    .service('trashService', TrashService)
 ;

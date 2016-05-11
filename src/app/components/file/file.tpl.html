@@ -1,4 +1,4 @@
-<div class="icon" ng-repeat="file in $ctrl.mediaService.files_data | orderBy: $ctrl.mediaService.order_files_by | filter:{name :$ctrl.mediaService.filter_files}" ng-click="$ctrl.mediaService.loadFile(file)">
+<div class="icon" ng-repeat="file in $ctrl.mediaService.files_data | orderBy: $ctrl.mediaService.order_files_by | filter:{name :$ctrl.mediaService.filter_files, inTrash: false}" ng-click="$ctrl.mediaService.loadFile(file)">
     <img class="remove_dir" src="img/close.png" ng-click="$ctrl.deleteFile(file, $event);">
     <img class="img_picture"  ng-src="{{file.icon}}">
 

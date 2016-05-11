@@ -1,8 +1,10 @@
 <div id="left_menu">
     <ul>
         <li ng-show="$ctrl.mediaService.dir" ng-click="$ctrl.mediaService.loadDir($ctrl.mediaService.dir, true)" style="font-weight: bold; font-size: 18px;">Nadradeny adresar</li>
-        <li ng-repeat="dir in $ctrl.mediaService.dirs_data" ng-click="$ctrl.mediaService.loadDir(dir)" >{{dir.name}}</li>
+        <li ng-repeat="dir in $ctrl.mediaService.dirs_data | filter: {name :$ctrl.mediaService.filter_files, inTrash: false}" ng-click="$ctrl.mediaService.loadDir(dir)" >{{dir.name}}</li>
     </ul>
     <div class="alert" ng-class="alert.type" ng-repeat="alert in $ctrl.alertsService.alerts track by $index">{{alert.message}}</div>
     <div class="loader" ng-if="$ctrl.loadingService.loadingStart">Loading...</div>
+
+    <div ng-if="$ctrl.trashService.trashCounts" ng-click="$ctrl.trashService.clearTrash()">Trash has: {{$ctrl.trashService.trashCounts}} garbage items</div>
 </div>

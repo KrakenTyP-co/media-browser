@@ -1,9 +1,7 @@
 # Domace ulohy
 
 1. Trash
-- vytvorit servisu traskServise
-- po stlaceni vymazat presunut File object do trash listu
-- po stlaceni trashu realne poslat requesty na vymazanie
+- po stlaceni trashu realne poslat requesty na vymazanie - dokoncit preco nejde naraz vymazat
 - graficky zapracovat (kontainer z cislovkou kolko suborou ma na vymazanie)
 - sivy kontainer ak je prazdny
 - farebny ak ma viac ako 0 poloziek

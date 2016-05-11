@@ -29,12 +29,16 @@ const TYPES = {
 export default class MediaService {
 
     // @ngInject
-    constructor($http, $window, $timeout, alertsService, loadingService) {
+    constructor($http, $window, $timeout, alertsService, loadingService, trashService) {
         this.$http = $http;
         this.$window = $window;
         this.$timeout = $timeout;
         this.alertsService = alertsService;
         this.loadingService = loadingService;
+        this.trashService = trashService;
+
+        trashService.dirRemoveFunc = (dir) => this._deleteDir(dir);
+        trashService.fileRemoveFunc = (file) => this._deleteFile(file);
 
         this.dir = null;
         this.dirs_data = [];
@@ -75,6 +79,11 @@ export default class MediaService {
         this.$http.get(`http://mediabrowser.bart.sk/dir${urlAdress}`)
             .then((response) => {
                 this.dir = response.data.dir;
+                this.dirs_data = [];
+                for (let dir of response.data.dirs) {
+                    dir.inTrash = false;
+                    this.dirs_data.push(dir);
+                }
                 this.dirs_data = response.data.dirs;
 
                 this.files_data = [];
@@ -173,6 +182,11 @@ export default class MediaService {
     }
 
     deleteDir(dir) {
+        dir.inTrash = true;
+        this.trashService.addToTrash(dir);
+    }
+
+    _deleteDir(dir) {
         this.loadingService.doLoading();
 
         this.$http({
@@ -197,6 +211,11 @@ export default class MediaService {
     }
 
     deleteFile(file){
+        file.inTrash = true;
+        this.trashService.addToTrash(file);
+    }
+
+    _deleteFile(file){
         this.loadingService.doLoading();
 
         this.$http({
@@ -235,7 +254,7 @@ export default class MediaService {
 }
 
 
-class File {
+export class File {
     constructor(data) {
         this.created_time = null;
         this.download_link = null;
@@ -247,6 +266,8 @@ class File {
         this.update_time = null;
 
         this.rawFile = null;
+
+        this.inTrash = false;
 
         angular.merge(this, data);
     }
