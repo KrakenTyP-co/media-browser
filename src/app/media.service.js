@@ -82,14 +82,16 @@ export default class MediaService {
                 this.dir = response.data.dir;
                 this.dirs_data = [];
                 for (let dir of response.data.dirs)  {
-                    dir.inTrash = false;
+                    dir.inTrash = this.trashService.isInTrash(dir, true);
                     this.dirs_data.push(dir);
                 }
                 this.dirs_data = response.data.dirs;
 
                 this.files_data = [];
                 for (let file of response.data.files) {
-                    this.files_data.push(new File(file));
+                    let newFile = new File(file);
+                    newFile.inTrash = this.trashService.isInTrash(newFile);
+                    this.files_data.push(newFile);
                 }
             })
             .catch((error) => {
@@ -167,6 +169,7 @@ export default class MediaService {
                 url: `http://mediabrowser.bart.sk/media-browser/dir`
             })
             .then(result => {
+                result.data.inTrash = this.trashService.isInTrash(result.data, true);
                 this.dirs_data.push(result.data);
                 let mess = result.data.code ? result.data.description : "Priecinok uspesne vytvoreny.";
                 this.alertsService.addAlert(mess);

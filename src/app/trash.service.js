@@ -36,7 +36,36 @@ export default class TrashService {
         }
     }
 
+    restoreTrash() {
+        for (let dir of this.directoryList) {
+            dir.inTrash = false;
+        }
+        for (let file of this.fileList) {
+            file.inTrash = false;
+        }
+        this.fileList=[];
+        this.directoryList=[];
+    }
+
     get trashCounts() {
         return this.fileList.length + this.directoryList.length;
+    }
+
+    isInTrash(obj, isDir = false) {
+        if (isDir) {
+            for (let dir of this.directoryList) {
+                if (dir.name == obj.name && dir.location == obj.location) {
+                    return true;
+                }
+            }
+        } else {
+            for (let file of this.fileList) {
+                if (file.name == obj.name && file.location == obj.location) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
