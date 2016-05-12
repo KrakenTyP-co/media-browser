@@ -24,14 +24,14 @@ export default class TrashService {
         if (angular.isFunction(this.dirRemoveFunc)) {
             for (let dir of this.directoryList) {
                 this.dirRemoveFunc.call(this, dir);
-                this.directoryList.shift();
+                this.directoryList=[];
             }
         }
 
         if (angular.isFunction(this.fileRemoveFunc)) {
             for (let file of this.fileList) {
                 this.fileRemoveFunc.call(this, file);
-                this.fileList.shift();
+                this.fileList=[];
             }
         }
     }

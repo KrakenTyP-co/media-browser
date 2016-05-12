@@ -55,6 +55,7 @@ export default class MediaService {
         this.filter_files = "";
 
         this.new_dir = '';
+        
 
         this.loadDir();
 
@@ -80,7 +81,7 @@ export default class MediaService {
             .then((response) => {
                 this.dir = response.data.dir;
                 this.dirs_data = [];
-                for (let dir of response.data.dirs) {
+                for (let dir of response.data.dirs)  {
                     dir.inTrash = false;
                     this.dirs_data.push(dir);
                 }
@@ -179,6 +180,7 @@ export default class MediaService {
             });
 
         this.new_dir = "";
+
     }
 
     deleteDir(dir) {
