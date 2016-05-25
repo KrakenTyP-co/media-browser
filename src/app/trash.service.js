@@ -47,6 +47,22 @@ export default class TrashService {
         this.directoryList=[];
     }
 
+    restoreObject(obj, isDir = false){
+        obj.inTrash = false;
+        if(isDir){
+            let index = this.directoryList.indexOf(obj);
+            if (index > -1) {
+                this.directoryList.splice(index, 1);
+            }
+        }
+        else{
+            let index = this.fileList.indexOf(obj);
+            if (index > -1) {
+                this.fileList.splice(index, 1);
+            }
+        }
+    }
+
     get trashCounts() {
         return this.fileList.length + this.directoryList.length;
     }

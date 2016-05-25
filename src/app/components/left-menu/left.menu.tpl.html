@@ -16,4 +16,8 @@
     <div ng-if="$ctrl.trashService.trashCounts">Trash has: {{$ctrl.trashService.trashCounts}} garbage items</div>
     <div ng-if="$ctrl.trashService.trashCounts" class="cursor-pointer"
          ng-click="$ctrl.trashService.restoreTrash()">Restore trash</div>
+    <div ng-if="$ctrl.trashService.trashCounts"> Content of the trash:
+        <div ng-repeat="dir in $ctrl.trashService.directoryList" ng-click="$ctrl.trashService.restoreObject(dir, true)">{{dir.name}}</div>
+        <div ng-repeat="file in $ctrl.trashService.fileList" ng-click="$ctrl.trashService.restoreObject(file)">{{file.name}}</div>
+    </div>
 </div>
